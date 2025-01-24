@@ -2,14 +2,21 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Form from './components/Form'
+import QuestionContainer from './components/QuestionContainer'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  
+  const [questions, setQuestions] = useState();
 
   return (
-    <>
-      <h1 className='text-red-400 font-bold'>Hello</h1>
-    </>
+    <div className='p-10'>
+      <div className='px-30'>
+        <Form setQuestions={setQuestions}/>
+      </div>
+      <QuestionContainer questions={questions}/>
+    </div>
   )
 }
 
