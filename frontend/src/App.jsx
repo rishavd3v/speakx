@@ -28,7 +28,7 @@ function App() {
 
   async function handleSearch(e) {
     if (e) e.preventDefault();
-    const data = await axios.get("http://localhost:3000/api/questions", {
+    const data = await axios.get("https://speakx-backend.vercel.app/api/questions", {
       params: {
         query,
         type,
