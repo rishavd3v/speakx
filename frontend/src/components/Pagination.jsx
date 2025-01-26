@@ -17,7 +17,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     return (
         <div className="flex justify-center items-center gap-4 mt-4">
             <button 
-                className={`bg-gray-300 px-4 py-2 rounded ${currentPage !== 1 && 'hover:cursor-pointer hover:bg-gray-400'}`} 
+                className={`bg-gray-300 px-4 py-2 rounded hover:cursor-not-allowed ${currentPage !== 1 && 'hover:cursor-pointer hover:bg-gray-400'}`} 
                 onClick={handlePrevious} 
                 disabled={currentPage === 1}
             >
@@ -25,7 +25,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             </button>
             <span>{currentPage} of {totalPages}</span>
             <button 
-                className={`bg-gray-300 px-4 py-2 rounded ${currentPage !== totalPages && 'hover:cursor-pointer hover:bg-gray-400'}`}
+                className={`bg-gray-300 px-4 py-2 rounded hover:cursor-not-allowed ${currentPage !== totalPages && 'hover:cursor-pointer hover:bg-gray-400'}`}
                 onClick={handleNext}
                 disabled={currentPage === totalPages}
             >

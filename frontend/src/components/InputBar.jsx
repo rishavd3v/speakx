@@ -10,6 +10,6 @@ export default function InputBar({ setQuery }) {
     }
 
     return(
-        <input onChange={handleQuery} className="rounded-md px-20 pl-1 py-2 border-black border-2" type="text" placeholder="Enter query..."/>
+        <input onChange={handleQuery} className="rounded-md md:pl-1 md:px-20 py-2 border-black border-2 medium" type="text" placeholder="Enter query..."/>
     )
 }
