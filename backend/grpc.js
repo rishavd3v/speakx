@@ -2,12 +2,16 @@ const path = require('path');
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const searchQuestions = require('./service/questionService');
+
+dotenv.config();
+const MONGO_URL = process.env.MONGO_URL;
 
 // Proto path
 const PROTO_PATH = path.resolve(__dirname, './proto/question.proto');
 
-// Load proto file
+// Load proto
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
     keepCase: true,
     longs: String,
@@ -19,8 +23,8 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
 const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
 const questionSearch = protoDescriptor.questionSearch;
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/questsearch')
+// Connect to Mongo
+mongoose.connect(MONGO_URL)
   .then(() => {
     console.log('Connected to MongoDB');
   })
@@ -29,7 +33,6 @@ mongoose.connect('mongodb://localhost:27017/questsearch')
   });
 
 
-// Start server
 function startServer() {
     const server = new grpc.Server();
     server.addService(questionSearch.QuestionService.service, {
