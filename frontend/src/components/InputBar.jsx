@@ -1,7 +1,12 @@
 export default function InputBar({ setQuery }) {
     
-    function handleQuery(e){
-        setQuery(e.target.value);
+    let timeout;
+
+    function handleQuery(e) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            setQuery(e.target.value);
+        }, 1000);
     }
 
     return(

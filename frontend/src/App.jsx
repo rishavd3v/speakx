@@ -1,23 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Form from './components/Form'
-import QuestionContainer from './components/QuestionContainer'
+import { useEffect, useState } from "react";
+import "./App.css";
+import Form from "./components/Form";
+import QuestionContainer from "./components/QuestionContainer";
+import Pagination from "./components/Pagination";
+import axios from "axios";
 
 function App() {
-
-  
   const [questions, setQuestions] = useState();
+  const [query, setQuery] = useState('');
+  const [type, setType] = useState('');
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
+
+  useEffect(() => {
+    handleSearch();
+    setPage(1);
+  }, [type, query]);
+
+  useEffect(() => {
+    handleSearch();
+  }, [page]);
+
+  async function handleSearch(e) {
+    if (e) e.preventDefault();
+    const data = await axios.get("http://localhost:3000/api/questions", {
+      params: {
+        query,
+        type,
+        page,
+      },
+    });
+
+    setQuestions(data.data);
+    setTotalPages(Math.ceil(data.data.total_count / 10));
+  }
 
   return (
-    <div className='p-10'>
-      <div className='px-30'>
-        <Form setQuestions={setQuestions}/>
+    <div className="p-10">
+      <div className="px-30">
+        <Form
+          setQuery={setQuery}
+          setType={setType}
+        />
       </div>
-      <QuestionContainer questions={questions}/>
+
+      <QuestionContainer questions={questions} />
+
+      {totalPages >= 1 && (
+        <Pagination
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
