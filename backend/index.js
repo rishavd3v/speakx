@@ -1,53 +1,16 @@
-const path = require('path');
-const grpc = require('@grpc/grpc-js');
-const protoLoader = require('@grpc/proto-loader');
-const mongoose = require('mongoose');
-const Question = require('./models/questionSchema');
-const searchQuestions = require('./service/questionService');
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const route = require('./routes/route')
+const startServer = require('./grpc').startServer;
 
-// Proto path
-const PROTO_PATH = path.resolve(__dirname, './proto/question.proto');
+app.use(cors());
+app.use(express.json());
 
-// Load proto file
-const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
-    keepCase: true,
-    longs: String,
-    enums: String,
-    defaults: true,
-    oneofs: true
-});
-
-const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
-const questionSearch = protoDescriptor.questionSearch;
-
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/questsearch')
-  .then(() => {
-    console.log('Connected to MongoDB');
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err);
-  });
-
-
-// Start server
-function startServer() {
-    const server = new grpc.Server();
-    server.addService(questionSearch.QuestionService.service, {
-        searchQuestions: searchQuestions
-    });
-    
-    server.bindAsync(
-        '0.0.0.0:50051',
-        grpc.ServerCredentials.createInsecure(),
-        (error, port) => {
-            if (error) {
-                console.error(error);
-                return;
-            }
-            console.log(`Server running at http://0.0.0.0:${port}`);
-        }
-    );
-}
+app.use("/api/", route);
 
 startServer();
+
+app.listen(3000, () => {
+    console.log('Express Server running at http://localhost:3000');
+})
