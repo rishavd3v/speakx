@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 const searchQuestions = require('./service/questionService');
 
 dotenv.config();
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/questsearch';
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/questdb';
 
 // Proto path
 const PROTO_PATH = path.resolve(__dirname, './proto/question.proto');

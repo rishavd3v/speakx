@@ -5,7 +5,7 @@ const Question = require('../models/questionSchema');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/questdb';
 async function importData() {
     try {
         await mongoose.connect(MONGO_URL);
