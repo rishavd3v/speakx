@@ -1,9 +1,7 @@
-import { useState } from "react"
-
 export default function QuestionContainer({questions}){
 
     return(
-        <div className="flex flex-col gap-20 my-18">
+        <div className="flex flex-col gap-16 my-18">
             {questions && questions.questions.map((question)=>{
                 
                 // Shuffle the blocks array

@@ -22,16 +22,19 @@ function App() {
   useEffect(() => {
     setLoading(true);
     setQuestions();
-    setPage(1);
     setTotalPages(0);
     handleSearch();
-  }, [type, query]);
+  }, [type, query, page]);
 
   useEffect(() => {
-    setLoading(true);
-    setQuestions();
-    handleSearch();
-  }, [page]);
+    setPage(1);
+  }, [type, query]);
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   setQuestions();
+  //   handleSearch();
+  // }, [page]);
 
   async function handleSearch(e) {
     if (e) e.preventDefault();
@@ -69,7 +72,7 @@ function App() {
           <span className="mt-20 flex justify-center">No Results!!!</span>
         )}
 
-        {totalPages >= 1 && (
+        {totalPages >= 1 && !loading && (
           <Pagination
             currentPage={page}
             totalPages={totalPages}
