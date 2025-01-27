@@ -6,7 +6,7 @@ export default function InputBar({ setQuery }) {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
             setQuery(e.target.value);
-        }, 1000);
+        }, 500);
     }
 
     return(
