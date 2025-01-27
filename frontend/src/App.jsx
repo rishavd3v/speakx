@@ -67,7 +67,10 @@ function App() {
         {loading ? (
           <Loading />
         ) : questions && questions.total_count > 0 ? (
-          <QuestionContainer questions={questions} />
+           <>
+             <p className="flex justify-center font-semibold text-gray-500 text-md mt-16">Total Questions: {questions.total_count} | Page: {page} of {totalPages}</p>
+             <QuestionContainer questions={questions} />
+           </>
         ) : (
           <span className="mt-20 flex justify-center">No Results!!!</span>
         )}
