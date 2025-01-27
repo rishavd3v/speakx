@@ -6,7 +6,7 @@ import Pagination from "./components/Pagination";
 import axios from "axios";
 import Navbar from "./components/Navbar";
 import Loading from "./components/Loading";
-
+const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 function App() {
   const [questions, setQuestions] = useState();
   const [query, setQuery] = useState("");
@@ -39,8 +39,7 @@ function App() {
   async function handleSearch(e) {
     if (e) e.preventDefault();
     const data = await axios.get(
-      "https://speakx-backend.vercel.app/api/questions",
-      // "http://localhost:3000/api/questions",
+      `${backendUrl}`,
       {
         params: {
           query,
