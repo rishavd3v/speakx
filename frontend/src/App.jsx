@@ -6,7 +6,7 @@ import Pagination from "./components/Pagination";
 import axios from "axios";
 import Navbar from "./components/Navbar";
 import Loading from "./components/Loading";
-const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/api/questions";
 function App() {
   const [questions, setQuestions] = useState();
   const [query, setQuery] = useState("");
