@@ -6,7 +6,7 @@ const Question = require("../models/questionSchema");
 
       const searchQuery = {};
       if (query) {
-        searchQuery.$text = { $search: query };
+        searchQuery.title = { $regex: new RegExp(query, 'i') };
       }
       if (type) {
         searchQuery.type = type;
