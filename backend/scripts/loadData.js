@@ -28,6 +28,10 @@ async function importData() {
     catch (error) {
         console.error('Error:', error);
     }
+    finally {
+        await mongoose.connection.close(); // Close the MongoDB connection
+        process.exit(0); // Exit the process
+    }
 }
 
 importData();
