@@ -13,7 +13,7 @@ QuestSearch is a project that provides a question search service using gRPC and 
 1. Clone the repository:
 
 ```sh
-git clone https://github.com/yourusername/speakx.git
+git clone https://github.com/rishavd3v/speakx.git
 cd speakx
 ```
 
