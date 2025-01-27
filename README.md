@@ -39,14 +39,16 @@ node index.js
 
 ## Running the Frontend
 
-1. Install dependencies:
+1. Open new terminal in root dir ```/speakx```
+
+2. Install dependencies:
 
 ```sh
-cd ../frontend
+cd ./frontend
 npm install
 ```
 
-2. Start frontend
+3. Start frontend
 ```sh
 npm run dev
 ```
