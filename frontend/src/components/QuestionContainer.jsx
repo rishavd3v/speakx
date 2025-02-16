@@ -35,7 +35,7 @@ export default function QuestionContainer({questions}){
                                     {shuffledBlocks.map((block) => {
                                         return (
                                             block.show_in_option &&
-                                            <div className={`bg-black text-white text-center flex items-center justify-center ${question.anagram_type === "SENTENCE"?"w-max p-2":"h-10 w-10"}`}>
+                                            <div className={`bg-black text-white flex items-center justify-center ${question.anagram_type === "SENTENCE"?"w-fit p-2":"h-10 w-10"}`}>
                                                 {block.text}
                                             </div>
                                         )
