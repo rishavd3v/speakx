@@ -30,12 +30,6 @@ function App() {
     setPage(1);
   }, [type, query]);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setQuestions();
-  //   handleSearch();
-  // }, [page]);
-
   async function handleSearch(e) {
     if (e) e.preventDefault();
     const data = await axios.get(
@@ -58,7 +52,7 @@ function App() {
     <div className="bg-white min-h-screen">
       <Navbar />
 
-      <div className="md:p-10 p-10">
+      <div className="p-10">
         <div className="md:px-30">
           <Form setQuery={setQuery} setType={setType} />
         </div>
